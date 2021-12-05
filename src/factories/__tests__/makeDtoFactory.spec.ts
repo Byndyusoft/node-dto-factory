@@ -14,5 +14,16 @@
  * limitations under the License.
  */
 
-export * from "./builders";
-export * from "./factories";
+import { DtoFactory, makeDtoFactory } from "~/src";
+import { CharacterDto } from "~/test";
+
+describe("factories/makeDtoFactory", () => {
+  it("must create DtoFactory", () => {
+    expect(
+      makeDtoFactory<CharacterDto>(() => ({
+        id: 1,
+        name: "Mage",
+      })),
+    ).toBeInstanceOf(DtoFactory);
+  });
+});

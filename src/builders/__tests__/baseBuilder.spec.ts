@@ -14,5 +14,21 @@
  * limitations under the License.
  */
 
-export * from "./builders";
-export * from "./factories";
+import { BaseBuilder } from "~/src";
+import { CharacterDto } from "~/test";
+
+describe("builders/BaseBuilder", () => {
+  describe("::build", () => {
+    it("must build character", () => {
+      const builder = new BaseBuilder<CharacterDto>(() => ({
+        id: 1,
+        name: "Mage",
+      }));
+
+      expect(builder.build()).toStrictEqual({
+        id: 1,
+        name: "Mage",
+      });
+    });
+  });
+});

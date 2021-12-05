@@ -14,5 +14,10 @@
  * limitations under the License.
  */
 
-export * from "./builders";
-export * from "./factories";
+import { CharacterDto } from "./characterDto";
+
+export class PartyDto {
+  public readonly mainCharacter!: CharacterDto;
+
+  public readonly companions!: CharacterDto[];
+}

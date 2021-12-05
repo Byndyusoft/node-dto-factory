@@ -14,5 +14,10 @@
  * limitations under the License.
  */
 
-export * from "./builders";
-export * from "./factories";
+import { BaseBuilder } from "~/src/builders";
+
+import { DtoFactory } from "./dtoFactory";
+
+export function makeDtoFactory<T>(buildFunction: () => T): DtoFactory<T> {
+  return new DtoFactory(new BaseBuilder(buildFunction));
+}
