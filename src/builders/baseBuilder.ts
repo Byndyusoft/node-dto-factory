@@ -14,5 +14,12 @@
  * limitations under the License.
  */
 
-export * from "./builders";
-export * from "./factories";
+import { IBuilder } from "./builderInterface";
+
+export class BaseBuilder<T> implements IBuilder<T> {
+  public constructor(private readonly __buildFunction: () => T) {}
+
+  public build(): T {
+    return this.__buildFunction();
+  }
+}

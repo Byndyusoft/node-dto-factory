@@ -14,5 +14,8 @@
  * limitations under the License.
  */
 
-export * from "./builders";
-export * from "./factories";
+export class CharacterDto {
+  public readonly id!: number;
+
+  public readonly name!: string;
+}

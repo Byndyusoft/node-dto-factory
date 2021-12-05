@@ -14,18 +14,4 @@
  * limitations under the License.
  */
 
-import { HelloWorldService } from "~/src";
-
-describe("HelloWorldService", () => {
-  let helloWorldService: HelloWorldService;
-
-  beforeEach(() => {
-    helloWorldService = new HelloWorldService();
-  });
-
-  it("must return hello world message", () => {
-    expect(helloWorldService.getHelloWorldMessage()).toEqualCaseInsensitive(
-      "hello world!",
-    );
-  });
-});
+export * from "./dtos";

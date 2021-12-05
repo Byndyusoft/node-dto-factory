@@ -14,5 +14,12 @@
  * limitations under the License.
  */
 
-export * from "./builders";
-export * from "./factories";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+export type TDeepPartial<T> = T extends Array<infer U>
+  ? U[]
+  : T extends ReadonlyArray<infer U>
+  ? readonly U[]
+  : T extends Record<string, any>
+  ? { [K in keyof T]?: TDeepPartial<T[K]> }
+  : T;

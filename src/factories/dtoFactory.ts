@@ -14,5 +14,20 @@
  * limitations under the License.
  */
 
-export * from "./builders";
-export * from "./factories";
+import merge from "merge";
+
+import { IBuilder } from "~/src/builders";
+
+import { TDeepPartial } from "./deepPartialType";
+
+export class DtoFactory<T> {
+  public constructor(private readonly __builder: IBuilder<T>) {}
+
+  public build(override?: TDeepPartial<T>): T {
+    return merge.recursive(true, this.__builder.build(), override) as T;
+  }
+
+  public buildList(count: number, override?: TDeepPartial<T>): T[] {
+    return Array.from({ length: count }).map(() => this.build(override));
+  }
+}
