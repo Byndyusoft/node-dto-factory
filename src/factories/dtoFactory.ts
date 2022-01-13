@@ -14,17 +14,27 @@
  * limitations under the License.
  */
 
-import merge from "merge";
+import { deepmergeCustom } from "deepmerge-ts";
 
 import { IBuilder } from "~/src/builders";
 
 import { TDeepPartial } from "./deepPartialType";
 
 export class DtoFactory<T> {
+  private readonly __deepmerge = deepmergeCustom({
+    mergeArrays: false,
+  });
+
   public constructor(private readonly __builder: IBuilder<T>) {}
 
   public build(override?: TDeepPartial<T>): T {
-    return merge.recursive(true, this.__builder.build(), override) as T;
+    const result = this.__builder.build();
+
+    if (!override) {
+      return result;
+    }
+
+    return this.__deepmerge(result, override) as T;
   }
 
   public buildList(count: number, override?: TDeepPartial<T>): T[] {

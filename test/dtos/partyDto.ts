@@ -19,5 +19,6 @@ import { CharacterDto } from "./characterDto";
 export class PartyDto {
   public readonly mainCharacter!: CharacterDto;
 
+  public readonly favoriteCompanion?: CharacterDto;
   public readonly companions!: CharacterDto[];
 }
