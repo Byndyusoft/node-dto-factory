@@ -28,13 +28,17 @@ describe("factories/DtoFactory", () => {
             id: 1,
             name: "Mage",
           },
+          favoriteCompanion: {
+            id: 2,
+            name: "Warrior",
+          },
           companions: [
             {
-              id: 1,
+              id: 2,
               name: "Warrior",
             },
             {
-              id: 2,
+              id: 3,
               name: "Rogue",
             },
           ],
@@ -50,20 +54,24 @@ describe("factories/DtoFactory", () => {
           id: 1,
           name: "Mage",
         },
+        favoriteCompanion: {
+          id: 2,
+          name: "Warrior",
+        },
         companions: [
           {
-            id: 1,
+            id: 2,
             name: "Warrior",
           },
           {
-            id: 2,
+            id: 3,
             name: "Rogue",
           },
         ],
       });
     });
 
-    it("must build party with override", () => {
+    it("must build party with array override", () => {
       expect(
         dtoFactory.build({
           mainCharacter: {
@@ -71,7 +79,7 @@ describe("factories/DtoFactory", () => {
           },
           companions: [
             {
-              id: 1,
+              id: 10,
               name: "Mage",
             },
           ],
@@ -81,10 +89,38 @@ describe("factories/DtoFactory", () => {
           id: 1,
           name: "Rogue",
         },
+        favoriteCompanion: {
+          id: 2,
+          name: "Warrior",
+        },
         companions: [
           {
-            id: 1,
+            id: 10,
             name: "Mage",
+          },
+        ],
+      });
+    });
+
+    it("must build party with nullable override", () => {
+      expect(
+        dtoFactory.build({
+          favoriteCompanion: undefined,
+        }),
+      ).toStrictEqual({
+        mainCharacter: {
+          id: 1,
+          name: "Mage",
+        },
+        favoriteCompanion: undefined,
+        companions: [
+          {
+            id: 2,
+            name: "Warrior",
+          },
+          {
+            id: 3,
+            name: "Rogue",
           },
         ],
       });
@@ -99,13 +135,17 @@ describe("factories/DtoFactory", () => {
             id: 1,
             name: "Mage",
           },
+          favoriteCompanion: {
+            id: 2,
+            name: "Warrior",
+          },
           companions: [
             {
-              id: 1,
+              id: 2,
               name: "Warrior",
             },
             {
-              id: 2,
+              id: 3,
               name: "Rogue",
             },
           ],
@@ -115,13 +155,17 @@ describe("factories/DtoFactory", () => {
             id: 1,
             name: "Mage",
           },
+          favoriteCompanion: {
+            id: 2,
+            name: "Warrior",
+          },
           companions: [
             {
-              id: 1,
+              id: 2,
               name: "Warrior",
             },
             {
-              id: 2,
+              id: 3,
               name: "Rogue",
             },
           ],
@@ -129,26 +173,68 @@ describe("factories/DtoFactory", () => {
       ]);
     });
 
-    it("must build parties with override", () => {
+    it("must build parties with array override", () => {
       expect(
         dtoFactory.buildList(2, {
           mainCharacter: {
-            id: 2,
+            id: 10,
           },
           companions: [],
         }),
       ).toStrictEqual([
         {
           mainCharacter: {
-            id: 2,
+            id: 10,
             name: "Mage",
+          },
+          favoriteCompanion: {
+            id: 2,
+            name: "Warrior",
           },
           companions: [],
         },
         {
           mainCharacter: {
-            id: 2,
+            id: 10,
             name: "Mage",
+          },
+          favoriteCompanion: {
+            id: 2,
+            name: "Warrior",
+          },
+          companions: [],
+        },
+      ]);
+    });
+
+    it("must build parties with nullable override", () => {
+      expect(
+        dtoFactory.buildList(2, {
+          favoriteCompanion: {
+            name: undefined,
+          },
+          companions: [],
+        }),
+      ).toStrictEqual([
+        {
+          mainCharacter: {
+            id: 1,
+            name: "Mage",
+          },
+          favoriteCompanion: {
+            id: 2,
+            name: undefined,
+          },
+          companions: [],
+        },
+        {
+          mainCharacter: {
+            id: 1,
+            name: "Mage",
+          },
+          favoriteCompanion: {
+            id: 2,
+            name: undefined,
           },
           companions: [],
         },

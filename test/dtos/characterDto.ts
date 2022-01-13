@@ -17,5 +17,5 @@
 export class CharacterDto {
   public readonly id!: number;
 
-  public readonly name!: string;
+  public readonly name?: string;
 }
