@@ -31,7 +31,7 @@ Example usage:
 
 ```typescript
 import { makeDtoFactory } from "@byndyusoft/dto-factory";
-import faker from "faker";
+import { faker } from "@faker-js/faker";
 
 class CharacterDto {
   public readonly id!: number;
@@ -41,7 +41,7 @@ class CharacterDto {
 
 const characterDtoFactory = makeDtoFactory<CharacterDto>(() => ({
   id: faker.datatype.number(),
-  name: faker.name.findName(),
+  name: faker.name.fullName(),
 }));
 
 // Build character without override
